@@ -7,13 +7,16 @@
 
 A Retrieve cria propostas comerciais personalizadas para cada cliente. O admin
 preenche um formulário (dados, marca, redes sociais, blocos da proposta) e o
-sistema gera uma página pública em `seudominio.com/<slug-do-cliente>`.
+sistema gera uma página pública em
+`https://proposta.assessoriaretrieve.com.br/<slug-do-cliente>`.
 
 - **Quem usa o admin:** só a Retrieve (um usuário, sem cadastro público).
-- **Quem vê a proposta:** o cliente, pelo link, sem login.
+- **Quem vê a proposta:** o cliente, pelo link, sem login. A proposta é
+  **só para leitura**: não há botão de aceitar. O fechamento acontece fora do
+  site (o CTA leva para o WhatsApp da Retrieve).
 - **O que torna a proposta dinâmica:** tema com a cor e a logo do cliente,
-  blocos que podem ser ligados, desligados e reordenados, contagem de
-  visualizações e um botão "Aceitar proposta".
+  blocos que podem ser ligados, desligados e reordenados, e contagem de
+  visualizações para a Retrieve saber quando o cliente abriu.
 
 ## 2. Stack
 
@@ -23,7 +26,7 @@ sistema gera uma página pública em `seudominio.com/<slug-do-cliente>`.
 | Estilo | Tailwind CSS + shadcn/ui |
 | Formulários | react-hook-form + zod |
 | Banco, login, arquivos | Supabase (Postgres, Auth, Storage) via `@supabase/ssr` |
-| Hospedagem | Vercel, com domínio próprio |
+| Hospedagem | Vercel, no subdomínio `proposta.assessoriaretrieve.com.br` |
 | Reordenar blocos | dnd-kit |
 
 ## 3. Rotas
@@ -34,7 +37,7 @@ sistema gera uma página pública em `seudominio.com/<slug-do-cliente>`.
 | `/admin` | logado | Lista de propostas: status, visualizações, copiar link |
 | `/admin/nova` | logado | Criar proposta |
 | `/admin/[id]` | logado | Editar proposta |
-| `/[slug]` | público | Página da proposta (404 se rascunho ou inexistente) |
+| `/[slug]` | público | Página da proposta (404 se não estiver `publicada` ou não existir) |
 | `/dev/blocos` | só em desenvolvimento | Vitrine dos blocos com dados de exemplo |
 
 Slugs reservados (não podem ser usados por propostas): `admin`, `login`,
@@ -54,16 +57,16 @@ Tabela `public.proposals`:
 | `brand_color` | text | hex, ex. `#1f3a8a` |
 | `socials` | jsonb | `{ instagram?, linkedin?, site?, whatsapp? }` |
 | `blocks` | jsonb | lista de blocos (seção 5) |
-| `status` | text | `rascunho` · `enviada` · `aceita` · `recusada` |
+| `status` | text | `rascunho` (só no admin) · `publicada` (link no ar) · `arquivada` (link sai do ar) |
 | `views` | int | incrementado pela página pública |
-| `last_viewed_at`, `accepted_at`, `created_at`, `updated_at` | timestamptz | |
+| `last_viewed_at`, `created_at`, `updated_at` | timestamptz | |
 
 **Segurança (RLS ligado):**
 - Usuário logado lê e edita só as linhas em que `owner_id = auth.uid()`.
-- Visitante anônimo **não lê a tabela**. A página pública usa duas funções
+- Visitante anônimo **não lê a tabela**. A página pública usa uma única função
   `security definer`:
-  - `get_proposal(p_slug)`: devolve a proposta se não for rascunho e soma 1 em `views`.
-  - `accept_proposal(p_slug)`: muda `enviada` → `aceita` e grava `accepted_at`.
+  - `get_proposal(p_slug)`: devolve a proposta se estiver `publicada` e soma 1 em `views`.
+- Não existe nenhuma escrita pública: o visitante não altera nada.
 
 Bucket `logos`: leitura pública, upload só para usuário logado.
 
@@ -75,15 +78,24 @@ Bucket `logos`: leitura pública, upload só para usuário logado.
 type Block = { id: string; type: BlockType; enabled: boolean; data: ... }
 ```
 
-| `type` | Conteúdo de `data` |
-|---|---|
-| `hero` | título, subtítulo (logo e cor vêm da proposta) |
-| `diagnostico` | texto sobre a situação atual do cliente, pontos de dor (lista) |
-| `escopo` | lista de entregas `{ titulo, descricao }` |
-| `cronograma` | etapas `{ etapa, prazo }` |
-| `investimento` | pacotes `{ nome, preco, periodicidade, itens[], destaque }` |
-| `cases` | `{ cliente, resultado, link? }` |
-| `cta` | texto do convite, WhatsApp; mostra o botão Aceitar |
+Ordem padrão de uma proposta nova (pode ser reordenada e cada bloco pode ser desligado):
+
+| # | `type` | Para que serve | Conteúdo de `data` |
+|---|---|---|---|
+| 1 | `hero` | Abertura personalizada | `titulo`, `subtitulo` (logo e cor vêm da proposta) |
+| 2 | `diagnostico` | Mostrar que entendemos o cliente | `texto`, `pontos_de_dor: string[]` |
+| 3 | `metodo` | Explicar o método de trabalho da Retrieve | `nome_metodo`, `etapas: { titulo, descricao }[]` |
+| 4 | `escopo` | O que será entregue | `entregas: { titulo, descricao }[]` |
+| 5 | `cronograma` | O que acontece em cada fase | `fases: { periodo, titulo, atividades: string[] }[]`; fases padrão: **Mês 1**, **Mês 2**, **Mês 3**, **Meses 4 a 6** |
+| 6 | `cases` | Resultados com outros clientes | `itens: { cliente, resultado, link? }[]` |
+| 7 | `depoimentos` | Prova social | `itens: { nome, cargo_empresa, texto, foto_url? }[]` |
+| 8 | `ancoragem` | Ancoragem de valor: mostrar quanto as entregas valeriam contratadas à parte, antes do preço | `itens: { item, valor }[]`, `texto_comparativo`; o total é calculado (soma dos itens) |
+| 9 | `investimento` | **Preço fechado** | `valor`, `periodicidade` (`mensal` · `unico`), `duracao_meses?`, `itens_inclusos: string[]`, `condicoes` (texto: forma de pagamento, fidelidade) |
+| 10 | `faq` | Tirar objeções | `itens: { pergunta, resposta }[]` |
+| 11 | `cta` | Próximo passo | `texto`, `whatsapp` (número), `texto_botao`; o botão abre conversa no WhatsApp da Retrieve |
+
+Valores em reais, formatados como `R$ 4.500,00`. Quando `ancoragem` e
+`investimento` estão ligados, a página mostra a diferença (“economia de R$ X”).
 
 O schema zod de cada bloco fica em `src/lib/blocks/schema.ts` e é a fonte da
 verdade para o formulário e para a página pública.
@@ -116,8 +128,8 @@ rodar ao mesmo tempo em worktrees separados.
   - Clients de navegador e servidor com `@supabase/ssr`; middleware que renova a sessão.
   - ✅ `npm run build` passa; `.env.local` não aparece no `git status`.
 - [ ] **T03 — Tabela, RLS e funções** · `backend` · `supabase/migrations/*`
-  - Migration com a tabela, as policies e as funções da seção 4.
-  - ✅ Como anônimo, `select` em `proposals` volta vazio; `get_proposal` devolve só não-rascunhos.
+  - Migration com a tabela, as policies e a função da seção 4.
+  - ✅ Como anônimo, `select` em `proposals` volta vazio; `get_proposal` devolve só propostas `publicada`.
 - [ ] **T04 — Login do admin** · `backend` · `src/app/login/*`, `src/app/admin/layout.tsx`
   - Login por e-mail e senha; `/admin/*` redireciona para `/login` sem sessão; botão sair.
   - ✅ Numa aba anônima, `/admin` vai para `/login`; depois de entrar, abre o admin.
@@ -144,26 +156,26 @@ rodar ao mesmo tempo em worktrees separados.
   - Campos da proposta, slug gerado do nome (`Padaria São João` → `padaria-sao-joao`), upload de logo, redes sociais, editor de blocos (ligar/desligar, editar `data`).
   - ✅ Criar uma proposta faz ela aparecer no Supabase; editar salva as mudanças.
 - [ ] **T11 — Página pública** · `frontend` · `src/app/[slug]/*`, `src/components/proposal/*`
-  - Chama `get_proposal` no servidor, aplica cor e logo, renderiza os blocos ativos na ordem; botão Aceitar chama `accept_proposal`.
-  - ✅ Aba anônima abre `/cliente-teste`; slug inventado ou rascunho dá 404; Aceitar muda o status.
+  - Chama `get_proposal` no servidor, aplica cor e logo, renderiza os blocos ativos na ordem. Página só de leitura.
+  - ✅ Aba anônima abre `/cliente-teste`; slug inventado, rascunho ou arquivada dá 404.
 - [ ] **T12 — Lista do admin** · `frontend` · `src/app/admin/page.tsx`, `src/components/admin-list/*`
-  - Tabela com cliente, status, visualizações, última visita, botões copiar link e editar; mudar status.
-  - ✅ Copiar link copia `https://<domínio>/<slug>`; status atualizado aparece na hora.
+  - Tabela com cliente, status, visualizações, última visita, botões copiar link e editar; publicar e arquivar.
+  - ✅ Copiar link copia `https://proposta.assessoriaretrieve.com.br/<slug>`; status atualizado aparece na hora.
 
 ### Extras (depois do grupo A)
 
 - [ ] **T13 — Reordenar blocos** · `frontend` · `src/components/admin/*` · dnd-kit · ✅ nova ordem aparece na página pública.
 - [ ] **T14 — Prévia no WhatsApp** · `frontend` · `src/app/[slug]/opengraph-image.tsx` · ✅ link colado mostra logo e nome do cliente.
-- [ ] **T15 — Aviso de aceite** · `backend` · ✅ aceitar dispara um e-mail para a Retrieve.
-- [ ] **T16 — (Opcional) IA no diagnóstico** · `backend` + `frontend` · ✅ botão gera rascunho editável do diagnóstico.
+- [ ] **T15 — (Opcional) IA no diagnóstico** · `backend` + `frontend` · ✅ botão gera rascunho editável do diagnóstico.
 
 ### Deploy (você)
 
-- [ ] **T17 — Vercel + domínio + URLs de auth no Supabase** · ✅ `https://<domínio>/cliente-teste` abre com HTTPS e o login funciona em produção.
+- [ ] **T16 — Vercel + subdomínio + URLs de auth no Supabase** · ✅ `https://proposta.assessoriaretrieve.com.br/cliente-teste` abre com HTTPS e o login funciona em produção.
 
-## 8. Decisões em aberto
+## 8. Decisões tomadas (19/11/2026)
 
-- Domínio que será usado.
-- Os blocos da seção 5 cobrem o que a Retrieve costuma apresentar? Falta algum (ex.: "Sobre a Retrieve", depoimentos, FAQ)?
-- Investimento: um preço fechado ou pacotes para o cliente escolher?
-- Aviso de aceite: e-mail, WhatsApp ou outro canal?
+- **Domínio:** `proposta.assessoriaretrieve.com.br` (subdomínio; DNS com um registro CNAME apontando para a Vercel).
+- **Blocos:** além dos originais, entram `metodo`, `depoimentos`, `ancoragem` e `faq`. O cronograma é detalhado por fase (Mês 1, 2, 3 e Meses 4 a 6).
+- **Investimento:** preço fechado, sem pacotes.
+- **Aceite:** não existe. A proposta é só para leitura; o fechamento é pelo WhatsApp.
+- **Status:** `rascunho`, `publicada` e `arquivada`, para poder tirar um link do ar.
