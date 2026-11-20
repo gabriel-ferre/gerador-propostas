@@ -174,7 +174,7 @@ Tarefas do mesmo **grupo paralelo** não mexem nos mesmos arquivos.
   - ✅ Como anônimo: `select` em `proposals`, `plans` e `plan_offers` volta vazio; `get_proposal` não traz oferta; advisor de segurança do Supabase sem alertas.
 - [x] **T04 — Login** · `backend` · `src/app/login/*`, `src/app/admin/layout.tsx`, `src/lib/auth.ts`
   - ✅ Aba anônima em `/admin` vai para `/login`; depois de entrar, abre o admin.
-- [ ] **T05 — Bucket `midia`** · `backend` · `supabase/migrations/*` · ✅ upload logado funciona; URL pública abre.
+- [x] **T05 — Bucket `midia`** · `backend` · `supabase/migrations/*` · ✅ upload logado funciona; URL pública abre.
 - [x] **T06 — Tipos do banco** · `qa` · `src/lib/database.types.ts` · ✅ gerado; build passa.
 
 ### Fase 2 — Admin de propostas (sequencial)
