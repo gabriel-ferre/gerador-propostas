@@ -167,7 +167,7 @@ Tarefas do mesmo **grupo paralelo** não mexem nos mesmos arquivos.
   - Next.js (TS, Tailwind, ESLint, App Router, `src/`) + shadcn/ui (button, input, textarea, label, card, switch, select, accordion).
   - A pasta já tem arquivos: criar em pasta temporária e mover, sem apagar `CLAUDE.md`, `docs/` e `.claude/`.
   - ✅ `npm run dev` abre em `localhost:3000`; `npm run build` passa.
-- [ ] **T02 — Clients do Supabase** · `backend` · `src/lib/supabase/*`, `src/middleware.ts`, `.env.example`
+- [x] **T02 — Clients do Supabase** · `backend` · `src/lib/supabase/*`, `src/proxy.ts` (o antigo middleware, renomeado no Next 16), `.env.example`
   - ✅ `npm run build` passa; `.env.local` não aparece no `git status`.
 - [ ] **T03 — Banco, RLS e seed** · `backend` · `supabase/migrations/*`, `supabase/seed.sql`
   - Tabelas e regras da seção 6 + `get_proposal`. Seed com conteúdo de exemplo marcado como `[EXEMPLO]`: 6 dores por canal, 2 cases, os 2 planos com ofertas, 3 FAQs, conteúdo das seções.
