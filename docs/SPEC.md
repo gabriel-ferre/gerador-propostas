@@ -191,9 +191,9 @@ Tarefas do mesmo **grupo paralelo** não mexem nos mesmos arquivos.
 - [ ] **T09 — Tokens e base visual** · `designer` · `src/app/globals.css`, `src/lib/theme.ts`, `src/components/ui-retrieve/*`
   - Identidade do Retrieve Design System; tipografia, cores, espaçamentos, componentes base (título de seção, bullet, card de dor).
   - ✅ `/dev/secoes` mostra os componentes base no celular e no desktop.
-- [ ] **T10 — Esqueleto da página** · `frontend` · `src/app/[slug]/page.tsx`, `src/app/[slug]/presenter.tsx`, `src/components/sections/index.ts`
+- [x] **T10 — Esqueleto da página** · `frontend` · `src/app/[slug]/page.tsx`, `src/app/[slug]/presenter.tsx`, `src/components/sections/index.ts`
   - Chama `get_proposal`, detecta sessão (modo apresentador), renderiza as 15 seções em ordem. Cada seção começa como um componente provisório em `src/components/sections/<key>.tsx`.
-  - ✅ `/cliente-teste` mostra as 15 seções provisórias; rascunho, arquivada ou slug inventado dão 404.
+  - ✅ uma proposta publicada mostra as 15 seções provisórias; rascunho, arquivada ou slug inventado mostram a página "não encontrado" (status HTTP 200 + noindex; ver decisão de 21/11).
 
 **Grupo paralelo B (depois da T10)** — cada tarefa só mexe nos arquivos das suas seções em `src/components/sections/`:
 
@@ -253,3 +253,4 @@ biblioteca. Pode ir juntando desde já:
 - 19/11: domínio `proposta.assessoriaretrieve.com.br`; proposta só leitura, sem aceite; status `rascunho`·`publicada`·`arquivada`.
 - 20/11: página reestruturada em 15 seções de ordem fixa, sempre na identidade Retrieve; Biblioteca × Proposta; modo apresentador com dores salvas ao vivo e oferta oculta por `Shift + O`; preço fixo por plano com ajuste opcional.
 - 20/11: a página da proposta segue a **linguagem do deck comercial** do Design System (`docs/design-system/slides/`): fonte Poppins (`--font-deck`), fundos preto ou degradê preto → `deck-navy`, títulos em caixa-alta com a palavra-chave em `brand-red`, números de prova em vermelho. O admin segue a linguagem de interface (Apfel Grotezk, fundo claro).
+- 21/11: com Cache Components o Next 16 envia a casca da página com HTTP 200 antes de consultar o banco; `notFound()` mostra "não encontrado" mas não troca o status para 404. Aceito: propostas têm noindex e só links válidos são enviados. Se precisar de 404 real (ex.: prévia de WhatsApp de proposta arquivada), checar o slug no `src/proxy.ts` com uma função SQL leve `proposal_exists`.
