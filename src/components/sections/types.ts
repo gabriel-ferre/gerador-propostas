@@ -34,7 +34,8 @@ export type InvestimentoProps = {
   plan: PlanInfo | null;
   priceOverride: ProposalInfo["priceOverride"];
 };
-// Sem nenhum dado de oferta: a oferta só chega por server action (T16).
-export type OfertaOcultaProps = Record<string, never>;
+// Sem nenhum dado de oferta: só o id da proposta. A oferta só chega por
+// server action protegida por requireUser() (T16).
+export type OfertaOcultaProps = { proposalId: string };
 export type FaqProps = { faqs: FaqItem[] };
 export type CtaProps = { content: SectionsContent["cta"] };

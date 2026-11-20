@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { isPresenter, loadProposalPage } from "@/lib/proposal";
 import { sections } from "@/components/sections";
+import { DeckPage } from "@/components/ui-retrieve";
 import { PresenterProvider } from "./presenter";
 
 // Página privada, sempre dinâmica (sessão + views): permite bloquear no servidor.
@@ -31,11 +32,15 @@ export default async function ProposalPage({ params }: PageProps<"/[slug]">) {
 
   return (
     <PresenterProvider isPresenter={presenter}>
-      <main>
-        {sections.map((s) => (
-          <div key={s.key}>{s.render(data)}</div>
-        ))}
-      </main>
+      <DeckPage>
+        <main>
+          {sections.map((s) => (
+            <div key={s.key} id={s.key}>
+              {s.render(data)}
+            </div>
+          ))}
+        </main>
+      </DeckPage>
     </PresenterProvider>
   );
 }

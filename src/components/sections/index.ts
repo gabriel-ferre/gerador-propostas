@@ -63,7 +63,7 @@ export const sections: SectionEntry[] = [
     plan: d.plan,
     priceOverride: d.proposal.priceOverride,
   })),
-  entry("oferta_oculta", OfertaOculta, () => ({})),
+  entry("oferta_oculta", OfertaOculta, (d) => ({ proposalId: d.proposal.id })),
   entry("faq", Faq, (d) => ({ faqs: d.faqs })),
   entry("cta", Cta, (d) => ({ content: d.content.cta })),
 ];
