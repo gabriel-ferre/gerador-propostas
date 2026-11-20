@@ -27,7 +27,18 @@ export async function updateSession(request: NextRequest) {
   );
 
   // Não coloque código entre createServerClient e getUser.
-  await supabase.auth.getUser();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  // Camada 1 de proteção: /admin e /admin/* exigem usuário logado.
+  const { pathname } = request.nextUrl;
+  if (!user && (pathname === "/admin" || pathname.startsWith("/admin/"))) {
+    const redirect = NextResponse.redirect(new URL("/login", request.url));
+    // Mantém cookies de sessão eventualmente renovados/limpos.
+    response.cookies.getAll().forEach((c) => redirect.cookies.set(c));
+    return redirect;
+  }
 
   return response;
 }

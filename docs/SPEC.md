@@ -172,7 +172,7 @@ Tarefas do mesmo **grupo paralelo** não mexem nos mesmos arquivos.
 - [x] **T03 — Banco, RLS e seed** · `backend` · `supabase/migrations/*`, `supabase/seed.sql`
   - Tabelas e regras da seção 6 + `get_proposal`. Seed com conteúdo de exemplo marcado como `[EXEMPLO]`: 6 dores por canal, 2 cases, os 2 planos com ofertas, 3 FAQs, conteúdo das seções.
   - ✅ Como anônimo: `select` em `proposals`, `plans` e `plan_offers` volta vazio; `get_proposal` não traz oferta; advisor de segurança do Supabase sem alertas.
-- [ ] **T04 — Login** · `backend` · `src/app/login/*`, `src/app/admin/layout.tsx`, `src/lib/auth.ts`
+- [x] **T04 — Login** · `backend` · `src/app/login/*`, `src/app/admin/layout.tsx`, `src/lib/auth.ts`
   - ✅ Aba anônima em `/admin` vai para `/login`; depois de entrar, abre o admin.
 - [ ] **T05 — Bucket `midia`** · `backend` · `supabase/migrations/*` · ✅ upload logado funciona; URL pública abre.
 - [ ] **T06 — Tipos do banco** · `qa` · `src/lib/database.types.ts` · ✅ gerado; build passa.
