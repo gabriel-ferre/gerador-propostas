@@ -5,7 +5,6 @@ const url = z.string();
 const bullets = z.array(z.string());
 // Listas de mídia: vazias no seed; ainda sem formato definido para os itens.
 const midias = z.array(z.string());
-const livre = z.array(z.unknown());
 
 export const autoridadeSchema = z.object({
   titulo: texto,
@@ -37,15 +36,38 @@ export const etapaConversaoSchema = z.object({
   texto,
   bullets,
   home_url: url,
-  marcacoes: livre,
+  /** Alterações numeradas sobre a foto da home; x/y em % da imagem. */
+  marcacoes: z.array(
+    z.object({
+      x: z.number().min(0).max(100),
+      y: z.number().min(0).max(100),
+      texto: z.string(),
+    }),
+  ),
+  /** Print da ferramenta Retrieve SPY (parte "WhatsApp"); opcional. */
+  spy_print_url: url.default(""),
+  /** Título e texto da parte "otimizações em e-commerce"; opcionais. */
+  home_titulo: texto.default(""),
+  home_texto: texto.default(""),
 });
 
 export const etapaRecompraSchema = z.object({
   titulo: texto,
   texto,
   bullets,
-  plataformas: livre,
-  exemplos: livre,
+  /** Plataformas parceiras; sem logo_url aparece só o nome. */
+  plataformas: z.array(
+    z.object({ nome: z.string(), logo_url: z.string().default("") }),
+  ),
+  /** Mocks de e-mail (assunto + parágrafos) e de WhatsApp (balões). */
+  exemplos: z.array(
+    z.object({
+      canal: z.enum(["email", "whatsapp"]),
+      titulo: z.string().default(""),
+      assunto: z.string().default(""),
+      mensagens: z.array(z.string()),
+    }),
+  ),
 });
 
 export const beneficiosSchema = z.object({

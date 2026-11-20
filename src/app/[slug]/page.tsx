@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { isPresenter, loadProposalPage } from "@/lib/proposal";
@@ -35,9 +36,7 @@ export default async function ProposalPage({ params }: PageProps<"/[slug]">) {
       <DeckPage>
         <main>
           {sections.map((s) => (
-            <div key={s.key} id={s.key}>
-              {s.render(data)}
-            </div>
+            <Fragment key={s.key}>{s.render(data)}</Fragment>
           ))}
         </main>
       </DeckPage>
