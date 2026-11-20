@@ -10,7 +10,7 @@ Antes de começar, leia `docs/SPEC.md` e encontre a tarefa pedida. Siga as regra
 
 Regras:
 - Server Components por padrão; `"use client"` só onde há interação.
-- Formulários com react-hook-form + zod, reaproveitando os schemas de `src/lib/blocks/schema.ts`.
+- Formulários com react-hook-form + zod, reaproveitando os schemas de `src/lib/schemas/`.
 - Acesso a dados pelos clients em `src/lib/supabase/`; nunca crie um client novo.
 - Use os componentes do shadcn/ui e os tokens do designer; não invente cores.
 - Toque só nos arquivos listados na tarefa. Precisou de outro? Pare e diga qual e por quê.

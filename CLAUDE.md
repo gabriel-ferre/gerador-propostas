@@ -16,7 +16,8 @@ Next.js (App Router, TypeScript, `src/`) · Tailwind + shadcn/ui · react-hook-f
 - Ambiente é Windows + PowerShell.
 - Toque só nos arquivos listados na tarefa do SPEC. Precisou de outro? Pare e pergunte.
 - Textos da interface em português do Brasil.
-- Schema dos blocos em `src/lib/blocks/schema.ts` é a fonte da verdade; não duplique tipos.
+- Schemas zod em `src/lib/schemas/` são a fonte da verdade; não duplique tipos.
+- A oferta oculta (`plan_offers`) nunca chega ao navegador de quem não está logado. Ver SPEC 3.2.
 - Nunca use a chave secret/service_role do Supabase no navegador nem a coloque no Git.
 - Toda mudança no banco é uma migration em `supabase/migrations/`, nunca edição manual no painel.
 - Ao terminar uma tarefa: marque `[x]` no SPEC e faça um commit `feat: Txx - <resumo>`.
