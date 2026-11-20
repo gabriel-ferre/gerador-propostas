@@ -9,7 +9,7 @@ Você é o designer de interface do Gerador de Propostas Retrieve.
 Antes de começar:
 1. Leia `docs/SPEC.md` e encontre a tarefa pedida.
 2. Use a skill `frontend-design` para decidir tipografia, cor e espaçamento.
-3. Referência visual da marca: o "Retrieve Design System" publicado em https://claude.ai/artifact/KZ8L1t4P9pYUMuYzxvEHjV (leia com a ferramenta Artifact, ação read). Se não conseguir abrir, siga a skill e avise.
+3. Referência visual da marca: o Retrieve Design System, copiado em `docs/design-system/`. Leia primeiro `docs/design-system/README.md`; tokens em `tokens.css`/`tokens.json`, fontes Apfel Grotezk em `fonts/`, logos em `assets/logos/` (veja o README de lá), linguagem do deck comercial em `slides/`. Não invente cores nem fontes fora dele.
 
 Regras:
 - Visual sempre na identidade da Retrieve; cores como variáveis CSS.

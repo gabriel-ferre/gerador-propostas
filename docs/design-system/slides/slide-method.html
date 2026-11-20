@@ -1,0 +1,43 @@
+<!-- @dsCard group="Slides" viewport="1280x720" name="Método" subtitle="A solução com método — O.D.C.R" -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  html,body { margin:0; }
+  .slide { width:1280px; height:720px; background:var(--white); color:var(--ink-900); position:relative;
+           font-family:var(--font-sans); padding:64px 80px; box-sizing:border-box; display:flex; flex-direction:column; }
+  .head { display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:44px; }
+  .eyebrow { font-size:13px; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:var(--brand-red); margin-bottom:14px; }
+  h2 { font-size:52px; line-height:0.98; letter-spacing:-0.02em; margin:0; font-weight:700; max-width:18ch; }
+  .logo { height:30px; opacity:0.9; }
+  .grid { display:grid; grid-template-columns:repeat(4,1fr); gap:18px; flex:1; }
+  .step { border:1.5px solid var(--ink-200); border-radius:var(--radius-lg); padding:30px 26px; display:flex; flex-direction:column; position:relative; }
+  .step:first-child { background:var(--ink-900); border-color:var(--ink-900); color:var(--white); }
+  .num { font-family:var(--font-mono); font-size:14px; font-weight:700; color:var(--brand-red); }
+  .step:first-child .num { color:var(--red-400); }
+  .st { font-size:27px; font-weight:700; line-height:1.05; letter-spacing:-0.01em; margin-top:auto; }
+  .sd { font-size:15px; line-height:1.45; color:var(--ink-500); margin-top:12px; }
+  .step:first-child .sd { color:var(--ink-300); }
+  .arrow { position:absolute; right:-13px; top:50%; transform:translateY(-50%); z-index:2; color:var(--brand-red); font-size:22px; }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="head">
+      <div>
+        <div class="eyebrow">A solução com método</div>
+        <h2>Um ecossistema, quatro alavancas.</h2>
+      </div>
+      <img class="logo" src="../assets/logos/retrieve-logo-primary.png" alt="Retrieve">
+    </div>
+    <div class="grid">
+      <div class="step"><span class="num">01</span><span class="st">Oferta Irresistível</span><span class="sd">Narrativa que transforma marca e produto em desejo.</span><span class="arrow">→</span></div>
+      <div class="step"><span class="num">02</span><span class="st">Demanda Qualificada</span><span class="sd">Tráfego pago que traz o público comprador.</span><span class="arrow">→</span></div>
+      <div class="step"><span class="num">03</span><span class="st">Conversão Otimizada</span><span class="sd">Canal de vendas eficiente, CAC menor.</span><span class="arrow">→</span></div>
+      <div class="step"><span class="num">04</span><span class="st">Recompra Sistemática</span><span class="sd">CRM que transforma clientes em fãs.</span></div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!-- @dsCard group="Slides" viewport="1280x720" name="Divisor de seção" subtitle="Abertura de capítulo" -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  html,body { margin:0; }
+  .slide { width:1280px; height:720px; background:var(--brand-red); color:var(--white); position:relative; overflow:hidden;
+           font-family:var(--font-sans); padding:72px 80px; box-sizing:border-box; display:flex; flex-direction:column; justify-content:space-between; }
+  .slide::before { content:""; position:absolute; left:-160px; bottom:-220px; width:560px; height:560px; border-radius:50%;
+                   background:rgba(0,0,0,0.10); }
+  .top { display:flex; align-items:center; justify-content:space-between; position:relative; z-index:1; }
+  .logo { height:32px; }
+  .num { font-family:var(--font-mono); font-size:16px; font-weight:700; letter-spacing:0.1em; opacity:0.8; }
+  .mid { position:relative; z-index:1; }
+  .eyebrow { font-size:14px; font-weight:700; letter-spacing:0.22em; text-transform:uppercase; opacity:0.85; margin-bottom:22px; }
+  h2 { font-size:92px; line-height:0.92; letter-spacing:-0.03em; margin:0; font-weight:700; max-width:14ch; }
+  .lead { font-size:22px; line-height:1.45; margin-top:26px; max-width:46ch; opacity:0.92; }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="top">
+      <img class="logo" src="../assets/logos/retrieve-logo-white.png" alt="Retrieve">
+      <span class="num">FASE 02</span>
+    </div>
+    <div class="mid">
+      <div class="eyebrow">Demanda Qualificada</div>
+      <h2>Tráfego que traz quem compra.</h2>
+      <p class="lead">Campanhas de tráfego pago que levam o público comprador para a sua loja ou e-commerce — com metas claras para bater.</p>
+    </div>
+    <div></div>
+  </div>
+</body>
+</html>

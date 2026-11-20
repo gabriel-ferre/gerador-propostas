@@ -1,0 +1,50 @@
+<!-- @dsCard height=300 -->
+<div class="cover">
+  <svg class="band" viewBox="0 0 960 120" width="960" height="120" aria-hidden="true">
+    <!--
+      blocks: brand-red 480x120 (space-24 x 5), ink-950 240x120, deck-navy 144x120, cover-red 96x120 (space-24) — red takes half: the color people know Retrieve by
+      arrangement: top-band skeleton, a strip of unequal bands flush left-to-right, like the manual's red / black / navy page sequence
+      pattern: "loud, bold" row — 45° stripes in white over the ink-950 block, echoing the symbol's ascending arrow leg ("seta de crescimento")
+      steps & radii: stripe pitch space-6 (24px), stroke border-thick x4 (8px), corners radius-none (square, poster-like)
+    -->
+    <defs><clipPath id="inkClip"><rect x="480" y="0" width="240" height="120"/></clipPath></defs>
+    <rect class="red" x="0" y="0" width="480" height="120"/>
+    <rect class="ink" x="480" y="0" width="240" height="120"/>
+    <rect class="navy" x="720" y="0" width="144" height="120"/>
+    <rect class="deep" x="864" y="0" width="96" height="120"/>
+    <g clip-path="url(#inkClip)">
+      <line class="stripe" x1="360" y1="120" x2="480" y2="0"/>
+      <line class="stripe" x1="384" y1="120" x2="504" y2="0"/>
+      <line class="stripe" x1="408" y1="120" x2="528" y2="0"/>
+      <line class="stripe" x1="432" y1="120" x2="552" y2="0"/>
+      <line class="stripe" x1="456" y1="120" x2="576" y2="0"/>
+      <line class="stripe" x1="480" y1="120" x2="600" y2="0"/>
+      <line class="stripe" x1="504" y1="120" x2="624" y2="0"/>
+      <line class="stripe" x1="528" y1="120" x2="648" y2="0"/>
+      <line class="stripe" x1="552" y1="120" x2="672" y2="0"/>
+      <line class="stripe" x1="576" y1="120" x2="696" y2="0"/>
+      <line class="stripe" x1="600" y1="120" x2="720" y2="0"/>
+      <line class="stripe" x1="624" y1="120" x2="744" y2="0"/>
+      <line class="stripe" x1="648" y1="120" x2="768" y2="0"/>
+      <line class="stripe" x1="672" y1="120" x2="792" y2="0"/>
+      <line class="stripe" x1="696" y1="120" x2="816" y2="0"/>
+    </g>
+  </svg>
+  <div class="text">
+    <div class="name">Retrieve Design System</div>
+    <div class="tag">Retome o controle do seu crescimento.</div>
+  </div>
+</div>
+<style>
+  html, body { margin: 0; }
+  .cover { position: relative; width: 960px; height: 300px; background: var(--white); overflow: hidden; }
+  .band { position: absolute; left: 0; top: 0; display: block; }
+  .red { fill: var(--brand-red); }
+  .ink { fill: var(--ink-950); }
+  .navy { fill: var(--deck-navy); }
+  .deep { fill: var(--cover-red); }
+  .stripe { stroke: var(--white); stroke-width: 8px; }
+  .text { position: absolute; left: 48px; bottom: 40px; right: 48px; }
+  .name { font-family: var(--font-display); font-weight: 700; font-size: 64px; line-height: .95; letter-spacing: var(--tracking-tight); color: var(--ink-950); white-space: nowrap; }
+  .tag { margin-top: var(--space-3); font-family: var(--font-sans); font-size: 14px; color: var(--ink-600); }
+</style>

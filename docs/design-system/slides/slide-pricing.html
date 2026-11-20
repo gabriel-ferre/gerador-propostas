@@ -1,0 +1,69 @@
+<!-- @dsCard group="Slides" viewport="1280x720" name="Investimento" subtitle="Planos e condição" -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  html,body { margin:0; }
+  .slide { width:1280px; height:720px; background:var(--white); color:var(--ink-900); position:relative;
+           font-family:var(--font-sans); padding:64px 80px; box-sizing:border-box; display:flex; flex-direction:column; }
+  .head { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:40px; }
+  .eyebrow { font-size:13px; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:var(--brand-red); margin-bottom:14px; }
+  h2 { font-size:48px; line-height:0.98; letter-spacing:-0.02em; margin:0; font-weight:700; }
+  .logo { height:30px; }
+  .plans { display:grid; grid-template-columns:1fr 1fr; gap:24px; flex:1; }
+  .plan { border:1.5px solid var(--ink-200); border-radius:var(--radius-xl); padding:38px 36px; display:flex; flex-direction:column; position:relative; }
+  .plan.feat { background:var(--ink-900); border-color:var(--ink-900); color:var(--white); }
+  .tag { position:absolute; top:24px; right:28px; font-size:11px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase;
+         background:var(--brand-red); color:#fff; padding:6px 12px; border-radius:var(--radius-pill); }
+  .pname { font-size:14px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-500); }
+  .plan.feat .pname { color:var(--ink-400); }
+  .price { font-size:56px; font-weight:700; letter-spacing:-0.03em; margin:18px 0 4px; }
+  .price small { font-size:22px; color:var(--ink-500); font-weight:400; }
+  .plan.feat .price small { color:var(--ink-400); }
+  .alt { font-size:15px; color:var(--ink-500); margin-bottom:24px; }
+  .plan.feat .alt { color:var(--ink-300); }
+  ul { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:11px; }
+  li { font-size:15px; display:flex; gap:10px; align-items:flex-start; color:var(--ink-700); }
+  .plan.feat li { color:var(--ink-200); }
+  li::before { content:""; width:8px; height:8px; border-radius:50%; background:var(--brand-red); margin-top:7px; flex:none; }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="head">
+      <div>
+        <div class="eyebrow">Investimento</div>
+        <h2>O time de uma grande operação, pelo valor de um gerente.</h2>
+      </div>
+      <img class="logo" src="../assets/logos/retrieve-logo-primary.png" alt="Retrieve">
+    </div>
+    <div class="plans">
+      <div class="plan">
+        <span class="pname">Plano E-com · Mensal</span>
+        <div class="price">R$ 4.500<small>/mês</small></div>
+        <div class="alt">+ 2% do faturamento incremental</div>
+        <ul>
+          <li>Gestão de campanhas Meta, Google e TikTok</li>
+          <li>Otimização de e-commerce com foco em conversão</li>
+          <li>Dashboard de marketing + relatório semanal</li>
+          <li>Reunião quinzenal e gerente de projetos</li>
+        </ul>
+      </div>
+      <div class="plan feat">
+        <span class="tag">Protagonista</span>
+        <span class="pname">Plano E-com · Trimestral</span>
+        <div class="price">R$ 4.000<small>/3x</small></div>
+        <div class="alt">Ou R$ 11.500 à vista · economize R$ 1.500</div>
+        <ul>
+          <li>Tudo do plano mensal</li>
+          <li>+ 1 mês extra de assessoria (R$ 4.500)</li>
+          <li>Boost com mentoria e área de membros</li>
+          <li>Comissão congelada por 1 mês</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

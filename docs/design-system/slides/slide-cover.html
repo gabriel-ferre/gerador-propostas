@@ -1,0 +1,39 @@
+<!-- @dsCard group="Slides" viewport="1280x720" name="Capa" subtitle="Abertura — Plano de Retomada" -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  html,body { margin:0; }
+  .slide { width:1280px; height:720px; background:var(--ink-950); color:var(--white); position:relative; overflow:hidden;
+           font-family:var(--font-sans); padding:72px 80px; box-sizing:border-box; display:flex; flex-direction:column; justify-content:space-between; }
+  .slide::after { content:""; position:absolute; right:-180px; top:-180px; width:620px; height:620px; border-radius:50%;
+                  background:radial-gradient(circle at 30% 30%, rgba(230,47,34,0.35), rgba(230,47,34,0) 62%); }
+  .top { display:flex; align-items:center; justify-content:space-between; position:relative; z-index:1; }
+  .logo { height:34px; }
+  .kicker { font-size:13px; font-weight:700; letter-spacing:0.22em; text-transform:uppercase; color:var(--red-400); }
+  .mid { position:relative; z-index:1; }
+  .eyebrow { font-size:14px; font-weight:700; letter-spacing:0.22em; text-transform:uppercase; color:var(--red-400); margin-bottom:24px; }
+  h1 { font-size:108px; line-height:0.92; letter-spacing:-0.03em; margin:0; font-weight:700; }
+  h1 .red { color:var(--brand-red); }
+  .lead { font-size:24px; line-height:1.4; color:var(--ink-300); max-width:30ch; margin-top:28px; }
+  .bottom { display:flex; align-items:center; gap:14px; position:relative; z-index:1; font-size:15px; color:var(--ink-400); }
+  .dot { width:7px; height:7px; border-radius:50%; background:var(--brand-red); }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <div class="top">
+      <img class="logo" src="../assets/logos/retrieve-logo-white.png" alt="Retrieve">
+      <span class="kicker">12 semanas</span>
+    </div>
+    <div class="mid">
+      <div class="eyebrow">Proposta comercial</div>
+      <h1>Plano de<br><span class="red">Retomada</span></h1>
+      <p class="lead">12 semanas para você assumir o controle do seu faturamento digital.</p>
+    </div>
+    <div class="bottom"><span class="dot"></span> Assessoria de marketing para o varejo — criada de dentro do varejo, para fora.</div>
+  </div>
+</body>
+</html>

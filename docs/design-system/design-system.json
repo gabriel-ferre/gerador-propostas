@@ -1,0 +1,91 @@
+{
+  "v": 3,
+  "assetGroups": {
+    "logos": {
+      "files": {
+        "retrieve-logo-horizontal.png": {
+          "name": "retrieve-logo-horizontal.png",
+          "blob": "feed679ccf076e262ddac962ea871c68",
+          "size": 9694,
+          "type": "image/png"
+        },
+        "retrieve-simbolo-vermelho-fundo-preto.png": {
+          "name": "retrieve-simbolo-vermelho-fundo-preto.png",
+          "blob": "bc873e1718d5fac1f6147fc5a4abce6c",
+          "size": 51044,
+          "type": "image/png"
+        },
+        "retrieve-capa-padrao.png": {
+          "name": "retrieve-capa-padrao.png",
+          "blob": "91fe04b15facd02e72a9056430784640",
+          "size": 57728,
+          "type": "image/png"
+        },
+        "retrieve-simbolo-preto-fundo-branco.png": {
+          "name": "retrieve-simbolo-preto-fundo-branco.png",
+          "blob": "909f56b270bc7b5e98cc5a1363b7695e",
+          "size": 28727,
+          "type": "image/png"
+        },
+        "retrieve-simbolo-azul-fundo-preto.png": {
+          "name": "retrieve-simbolo-azul-fundo-preto.png",
+          "blob": "98444a43a7fdec267cf176009b51e378",
+          "size": 57489,
+          "type": "image/png"
+        }
+      },
+      "name": "logos",
+      "order": [
+        "retrieve-logo-primary.png",
+        "retrieve-logo-white.png",
+        "retrieve-logo-red.png",
+        "retrieve-logo-horizontal.png",
+        "retrieve-simbolo-vermelho-fundo-preto.png",
+        "retrieve-capa-padrao.png",
+        "retrieve-simbolo-preto-fundo-branco.png",
+        "retrieve-simbolo-azul-fundo-preto.png"
+      ],
+      "tile": "m"
+    },
+    "notes": {
+      "files": {},
+      "name": "notes",
+      "order": []
+    }
+  },
+  "blobs": {},
+  "createdOnFiles": {
+    "at": "2026-11-02T15:29:55.448Z",
+    "v": 1
+  },
+  "docs": {
+    "readme": "project/README.md",
+    "sections": [
+      "project/ui_kits/website/README.md"
+    ]
+  },
+  "groups": [
+    "logos",
+    "notes"
+  ],
+  "layout": "files",
+  "libraries": [
+    {
+      "name": "react",
+      "version": "18"
+    },
+    {
+      "name": "react-dom",
+      "version": "18"
+    }
+  ],
+  "namespace": "RetrieveDesignSystem_cd8a72",
+  "sections": {},
+  "title": "Retrieve Design System",
+  "lastChange": {
+    "by": "Gabriel",
+    "at": "2026-11-02T16:10:00Z",
+    "via": "Claude (chat)",
+    "note": "Configuração concluída no formato Design System + atualização com o Manual de Identidade e o Plano de Retomada V2"
+  }
+}
