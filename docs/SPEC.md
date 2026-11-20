@@ -163,7 +163,7 @@ Tarefas do mesmo **grupo paralelo** não mexem nos mesmos arquivos.
 
 ### Fase 1 — Fundação (sequencial)
 
-- [ ] **T01 — Scaffold** · `frontend`
+- [x] **T01 — Scaffold** · `frontend`
   - Next.js (TS, Tailwind, ESLint, App Router, `src/`) + shadcn/ui (button, input, textarea, label, card, switch, select, accordion).
   - A pasta já tem arquivos: criar em pasta temporária e mover, sem apagar `CLAUDE.md`, `docs/` e `.claude/`.
   - ✅ `npm run dev` abre em `localhost:3000`; `npm run build` passa.

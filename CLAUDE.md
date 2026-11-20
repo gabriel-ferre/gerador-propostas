@@ -14,6 +14,7 @@ Next.js (App Router, TypeScript, `src/`) · Tailwind + shadcn/ui · react-hook-f
 
 ## Regras
 - Ambiente é Windows + PowerShell.
+- Next.js 16 mudou APIs e convenções: antes de escrever código Next, leia o guia relevante em `node_modules/next/dist/docs/` (ver `AGENTS.md`).
 - Toque só nos arquivos listados na tarefa do SPEC. Precisou de outro? Pare e pergunte.
 - Textos da interface em português do Brasil.
 - Schemas zod em `src/lib/schemas/` são a fonte da verdade; não duplique tipos.
