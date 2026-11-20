@@ -169,7 +169,7 @@ Tarefas do mesmo **grupo paralelo** não mexem nos mesmos arquivos.
   - ✅ `npm run dev` abre em `localhost:3000`; `npm run build` passa.
 - [x] **T02 — Clients do Supabase** · `backend` · `src/lib/supabase/*`, `src/proxy.ts` (o antigo middleware, renomeado no Next 16), `.env.example`
   - ✅ `npm run build` passa; `.env.local` não aparece no `git status`.
-- [ ] **T03 — Banco, RLS e seed** · `backend` · `supabase/migrations/*`, `supabase/seed.sql`
+- [x] **T03 — Banco, RLS e seed** · `backend` · `supabase/migrations/*`, `supabase/seed.sql`
   - Tabelas e regras da seção 6 + `get_proposal`. Seed com conteúdo de exemplo marcado como `[EXEMPLO]`: 6 dores por canal, 2 cases, os 2 planos com ofertas, 3 FAQs, conteúdo das seções.
   - ✅ Como anônimo: `select` em `proposals`, `plans` e `plan_offers` volta vazio; `get_proposal` não traz oferta; advisor de segurança do Supabase sem alertas.
 - [ ] **T04 — Login** · `backend` · `src/app/login/*`, `src/app/admin/layout.tsx`, `src/lib/auth.ts`
