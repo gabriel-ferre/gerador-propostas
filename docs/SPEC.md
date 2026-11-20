@@ -28,7 +28,7 @@ WhatsApp (CTA).
 | Camada | Escolha |
 |---|---|
 | Framework | Next.js (App Router) + TypeScript |
-| Estilo | Tailwind CSS + shadcn/ui, tokens do Retrieve Design System |
+| Estilo | Tailwind CSS + shadcn/ui, tokens do Retrieve Design System (`docs/design-system/`) |
 | Formulários | react-hook-form + zod |
 | Banco, login, arquivos | Supabase (Postgres, Auth, Storage) via `@supabase/ssr` |
 | Hospedagem | Vercel, no subdomínio `proposta.assessoriaretrieve.com.br` |
@@ -252,3 +252,4 @@ biblioteca. Pode ir juntando desde já:
 
 - 19/11: domínio `proposta.assessoriaretrieve.com.br`; proposta só leitura, sem aceite; status `rascunho`·`publicada`·`arquivada`.
 - 20/11: página reestruturada em 15 seções de ordem fixa, sempre na identidade Retrieve; Biblioteca × Proposta; modo apresentador com dores salvas ao vivo e oferta oculta por `Shift + O`; preço fixo por plano com ajuste opcional.
+- 20/11: a página da proposta segue a **linguagem do deck comercial** do Design System (`docs/design-system/slides/`): fonte Poppins (`--font-deck`), fundos preto ou degradê preto → `deck-navy`, títulos em caixa-alta com a palavra-chave em `brand-red`, números de prova em vermelho. O admin segue a linguagem de interface (Apfel Grotezk, fundo claro).
