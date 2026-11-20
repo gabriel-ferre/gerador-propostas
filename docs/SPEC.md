@@ -182,7 +182,7 @@ Tarefas do mesmo **grupo paralelo** não mexem nos mesmos arquivos.
 - [x] **T07 — Schemas** · `backend` · `src/lib/schemas/*`
   - zod da proposta, de `section_content` por seção e de `payment_options`/`anchoring`; validação de slug reservado.
   - ✅ JSON inválido é recusado; slug `admin` é recusado.
-- [ ] **T08 — Lista e formulário de propostas** · `frontend` · `src/app/admin/page.tsx`, `src/app/admin/propostas/*`, `src/components/admin/*`
+- [x] **T08 — Lista e formulário de propostas** · `frontend` · `src/app/admin/page.tsx`, `src/app/admin/propostas/*`, `src/components/admin/*`
   - Lista com status, visualizações, última visita, copiar link, publicar/arquivar. Formulário: empresa, slug gerado do nome, canal, dores destacadas (checkbox por canal), case (select com nicho), plano (select), ajuste de preço opcional.
   - ✅ Criar uma proposta faz ela aparecer na lista; copiar link copia `https://proposta.assessoriaretrieve.com.br/<slug>`.
 
